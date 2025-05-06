@@ -1,6 +1,7 @@
 #include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h> // Needed for strcmp
 
 // Function to allocate a matrix
 int **allocate_matrix(int rows, int cols) {
@@ -87,71 +88,65 @@ void multiply_conditional_parallel(int **a, int **b, int **c, int rows,
 
 int main() {
   int N = 1000; // Matrix size (rows and columns). Change to 1000 as required.
-  int threshold =
-      5000; // Threshold for conditional parallelism (N*N > threshold)
+  int initial_threshold = 5000; // Initial threshold for conditional parallelism
+  const int NUM_TRIALS = 10;
 
-  printf("Matrix size: %d x %d\n", N, N);
+  // Print CSV header
+  printf("Method,Trial,Size,Threshold,Time\n");
 
-  // Allocate matrices
+  // Allocate matrices once outside the trial loop
   int **matrix_a = allocate_matrix(N, N);
   int **matrix_b = allocate_matrix(N, N);
   int **result_c = allocate_matrix(N, N);
 
-  // Initialize matrices
+  // Initialize matrices once
   initialize_matrix(matrix_a, N, N);
   initialize_matrix(matrix_b, N, N);
 
-  double start_time, end_time;
+  for (int trial = 0; trial < NUM_TRIALS; ++trial) {
+    double start_time, end_time;
 
-  printf("\n--- a) Sequential Multiplication ---\n");
-  start_time = omp_get_wtime();
-  multiply_sequential(matrix_a, matrix_b, result_c, N, N, N);
-  end_time = omp_get_wtime();
-  printf("Time: %f seconds\n", end_time - start_time);
-  // small N
+    // --- a) Sequential Multiplication ---
+    // No need to re-initialize result_c if it's overwritten anyway
+    start_time = omp_get_wtime();
+    multiply_sequential(matrix_a, matrix_b, result_c, N, N, N);
+    end_time = omp_get_wtime();
+    printf("Sequential,%d,%d,%d,%f\n", trial, N, 0, end_time - start_time);
 
-  printf("\n--- b) Forced Parallel Multiplication ---\n");
-  // Reset result matrix (or use a different one)
-  initialize_matrix(
-      result_c, N, N); // Re-initialize C to zeros or some known state if needed
-  start_time = omp_get_wtime();
-  multiply_forced_parallel(matrix_a, matrix_b, result_c, N, N, N);
-  end_time = omp_get_wtime();
-  printf("Time: %f seconds\n", end_time - start_time);
+    // --- b) Forced Parallel Multiplication ---
+    start_time = omp_get_wtime();
+    multiply_forced_parallel(matrix_a, matrix_b, result_c, N, N, N);
+    end_time = omp_get_wtime();
+    printf("ForcedParallel,%d,%d,%d,%f\n", trial, N, 0, end_time - start_time);
 
-  printf(
-      "\n--- c) Conditional Parallel Multiplication (Initial Threshold) ---\n");
-  printf("Initial threshold = %d elements\n", threshold);
-  initialize_matrix(result_c, N, N); // Re-initialize C
-  start_time = omp_get_wtime();
-  multiply_conditional_parallel(matrix_a, matrix_b, result_c, N, N, N,
-                                threshold);
-  end_time = omp_get_wtime();
-  printf("Time: %f seconds\n", end_time - start_time);
-
-  printf("\n--- Testing Different Thresholds for Conditional Parallelism "
-         "---\n");
-  int thresholds[] = {1000,   5000,   10000,  50000,
-                      100000, 500000, 1000000}; // Example thresholds (N*N)
-  for (int i = 0; i < sizeof(thresholds) / sizeof(thresholds[0]); ++i) {
-    threshold = thresholds[i];
-    if (N * N < threshold) {
-      printf("Threshold %5d: Skipped (Matrix size %d < Threshold)\n", threshold,
-             N * N);
-      continue;
-    }
-    initialize_matrix(result_c, N, N); // Re-initialize C
+    // --- c) Conditional Parallel Multiplication (Initial Threshold) ---
     start_time = omp_get_wtime();
     multiply_conditional_parallel(matrix_a, matrix_b, result_c, N, N, N,
-                                  threshold);
+                                  initial_threshold);
     end_time = omp_get_wtime();
-    printf("Threshold %5d: Time = %f seconds (Parallel? %s)\n", threshold,
-           end_time - start_time, (N * N > threshold) ? "Yes" : "No");
-  }
+    printf("ConditionalParallelInitial,%d,%d,%d,%f\n", trial, N,
+           initial_threshold, end_time - start_time);
 
-  printf("-----------------------------------------------------\n");
+    // --- Testing Different Thresholds for Conditional Parallelism ---
+    int thresholds[] = {1000,   5000,   10000,  50000,
+                        100000, 500000, 1000000}; // Example thresholds (N*N)
+    int num_thresholds = sizeof(thresholds) / sizeof(thresholds[0]);
 
-  // Free allocated memory
+    for (int i = 0; i < num_thresholds; ++i) {
+      int current_threshold = thresholds[i];
+      // No need to check N*N < threshold here, just run and record time.
+      // The if condition is inside the multiply function itself.
+      start_time = omp_get_wtime();
+      multiply_conditional_parallel(matrix_a, matrix_b, result_c, N, N, N,
+                                    current_threshold);
+      end_time = omp_get_wtime();
+      // Distinguish these results from the initial threshold run
+      printf("ConditionalParallelThreshold,%d,%d,%d,%f\n", trial, N,
+             current_threshold, end_time - start_time);
+    }
+  } // End of trial loop
+
+  // Free allocated memory once after all trials
   free_matrix(matrix_a, N);
   free_matrix(matrix_b, N);
   free_matrix(result_c, N);
