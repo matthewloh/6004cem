@@ -1,5 +1,6 @@
-Week 2f Lab Activity -Implicit and Explicit Barrier And the NOWAIT Clause
-Compare the results of the following codes:
+# Week 2f Lab Activity -Implicit and Explicit Barrier And the NOWAIT Clause
+
+## Compare the results of the following codes:
 
 ```c
 #include <stdio.h>
@@ -60,8 +61,6 @@ void nowait_example(int n, int m, float *a, float *b, float *y, float *z){
 ---
 
 ### Analysis of the `NOWAIT` Clause Exercise
-
-Here are the two versions of the code, including a `main` function for execution and tracing output:
 
 ```c
 #include <stdio.h>
