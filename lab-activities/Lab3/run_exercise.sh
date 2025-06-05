@@ -7,15 +7,15 @@ SOURCE_FILE="nowait_exercise.c"
 EXECUTABLE_NAME="nowait_exercise"
 
 # Get the directory where the script is located
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
 # Change to the script's directory to ensure files are found
 cd "$SCRIPT_DIR" || exit 1
 
 # Clean up previous executable if it exists
 if [ -f "$EXECUTABLE_NAME" ]; then
-    echo "Removing previous executable: $EXECUTABLE_NAME"
-    rm "$EXECUTABLE_NAME"
+  echo "Removing previous executable: $EXECUTABLE_NAME"
+  rm "$EXECUTABLE_NAME"
 fi
 
 # Compile the C code with OpenMP support
@@ -28,10 +28,10 @@ gcc "$SOURCE_FILE" -o "$EXECUTABLE_NAME" -fopenmp -lm -Wall -Wextra -pedantic
 
 # Check if compilation was successful
 if [ $? -ne 0 ]; then
-    echo "Compilation failed!"
-    exit 1
+  echo "Compilation failed!"
+  exit 1
 else
-    echo "Compilation successful."
+  echo "Compilation successful."
 fi
 
 # Run the executable
@@ -43,14 +43,15 @@ echo "Running $EXECUTABLE_NAME..."
 
 # Check the exit status of the program
 if [ $? -ne 0 ]; then
-    echo "Program execution encountered an error."
-    exit 1
+  echo "Program execution encountered an error."
+  exit 1
 else
-    echo "Program finished."
+  echo "Program finished."
 fi
 
 # Optional: Clean up the executable after running
 # echo "Cleaning up executable: $EXECUTABLE_NAME"
 # rm "$EXECUTABLE_NAME"
 
-exit 0 
+exit 0
+
