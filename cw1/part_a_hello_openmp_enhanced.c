@@ -351,11 +351,11 @@ int main() {
     printf("✓ Enhanced features: IMPLEMENTED\n");
     printf("✓ System verification info: INCLUDED\n");
     
-    printf("\n=== SCREENSHOT REMINDER ===\n");
-    printf("📸 Take screenshot showing:\n");
-    printf("   - Your hostname: Run 'hostname' command\n");
-    printf("   - This program output with system info\n");
-    printf("   - Terminal window with your username\n");
+    // printf("\n=== SCREENSHOT REMINDER ===\n");
+    // printf("📸 Take screenshot showing:\n");
+    // printf("   - Your hostname: Run 'hostname' command\n");
+    // printf("   - This program output with system info\n");
+    // printf("   - Terminal window with your username\n");
     
     printf("\nProgram completed successfully!\n");
     printf("================================================================\n");

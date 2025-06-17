@@ -420,7 +420,7 @@ show_menu() {
     echo "6) Run Part C (Matrix Calculation)"
     echo "7) Run All Programs Sequentially"
     echo
-    echo "=== ENHANCED PROGRAMS (80+ Mark Features) ==="
+    echo "=== ENHANCED PROGRAMS ==="
     echo "11) Compile Enhanced Programs"
     echo "12) Run Enhanced Part A (Comprehensive)"
     echo "13) Run Enhanced Part B (Comprehensive)"

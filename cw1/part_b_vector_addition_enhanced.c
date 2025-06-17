@@ -3,8 +3,8 @@
  * Part B: Enhanced Vector Addition with OpenMP Work-Sharing
  * 6004CEM Parallel and Distributed Programming Coursework
  * 
- * Author: [Your Name]
- * Date: [Current Date]
+ * Author: Matthew Loh Yet Marn
+ * Date: APR2025
  * 
  * Assignment Requirements Met:
  * 1. ✓ Vector addition using work-sharing construct
@@ -398,7 +398,7 @@ void chunk_size_analysis() {
 int main() {
     printf("================================================================\n");
     printf("Part B: Enhanced Vector Addition with OpenMP Work-Sharing\n");
-    printf("6004CEM Parallel and Distributed Programming\n");
+    printf("6004CEM Parallel Programming Coursework\n");
     printf("================================================================\n\n");
     
     // Display system information
@@ -475,12 +475,12 @@ int main() {
     printf("✓ Test different chunk sizes for your specific problem\n");
     printf("✓ Consider GUIDED scheduling as a compromise\n");
     
-    printf("\n*** SCREENSHOT REQUIREMENTS ***\n");
-    printf("📸 Take screenshots showing:\n");
-    printf("   - Your hostname and username clearly visible\n");
-    printf("   - Performance analysis tables and results\n");
-    printf("   - Scalability analysis data\n");
-    printf("   - Results verification confirmations\n");
+    // printf("\n*** SCREENSHOT REQUIREMENTS ***\n");
+    // printf("📸 Take screenshots showing:\n");
+    // printf("   - Your hostname and username clearly visible\n");
+    // printf("   - Performance analysis tables and results\n");
+    // printf("   - Scalability analysis data\n");
+    // printf("   - Results verification confirmations\n");
     
     printf("\n*** COURSEWORK REQUIREMENTS VERIFICATION ***\n");
     printf("✓ Vector addition with work-sharing construct: IMPLEMENTED\n");
