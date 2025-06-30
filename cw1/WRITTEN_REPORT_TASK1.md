@@ -1,12 +1,12 @@
 # Technical Analysis of Parallel and Distributed Computing Technologies
 ## 6004CEM Parallel and Distributed Programming - TASK 1
 
-**Student**: [Your Name]  
-**Student ID**: [Your Student ID]  
+**Student**: Matthew Loh Yet Marn  
+**Student ID**: 13445539  
 **Module**: 6004CEM Parallel and Distributed Programming  
 **Assignment**: Written Report - Technology Analysis  
 **Word Count**: 1,600 words  
-**Submission Date**: [Current Date]  
+**Submission Date**: 30/06/2025  
 **Institution**: Coventry University
 
 ---

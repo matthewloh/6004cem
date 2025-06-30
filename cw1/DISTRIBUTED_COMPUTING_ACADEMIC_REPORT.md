@@ -1,11 +1,11 @@
 # Distributed Computing Implementation Report
 ## 6004CEM Parallel and Distributed Programming Coursework
 
-**Student**: [Your Name]  
-**Student ID**: [Your Student ID]  
+**Student**: Matthew Loh Yet Marn  
+**Student ID**: 13445539  
 **Module**: 6004CEM Parallel and Distributed Programming  
 **Assignment**: Portfolio Element - Distributed Computing Component  
-**Submission Date**: [Current Date]  
+**Submission Date**: 30/06/2025  
 **Institution**: Coventry University
 
 ---
@@ -472,7 +472,7 @@ MPI Version: 3.1 (OpenMPI 4.1.2)
 **Document Classification**: Academic Submission  
 **Confidentiality**: Educational Use Only  
 **Version**: 1.0  
-**Last Modified**: [Current Date]  
+**Last Modified**: 30/06/2025  
 **Word Count**: Approximately 3,200 words  
 **Page Count**: 15 pages
 

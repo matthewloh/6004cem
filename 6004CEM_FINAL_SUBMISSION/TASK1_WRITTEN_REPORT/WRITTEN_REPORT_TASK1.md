@@ -1,12 +1,13 @@
 # Technical Analysis of Parallel and Distributed Computing Technologies
+
 ## 6004CEM Parallel and Distributed Programming - TASK 1
 
-**Student**: [Your Name]  
-**Student ID**: [Your Student ID]  
+**Student**: Matthew Loh Yet Marn  
+**Student ID**: 13445539  
 **Module**: 6004CEM Parallel and Distributed Programming  
 **Assignment**: Written Report - Technology Analysis  
 **Word Count**: 1,600 words  
-**Submission Date**: [Current Date]  
+**Submission Date**: 30/06/2025  
 **Institution**: Coventry University
 
 ---
@@ -117,64 +118,64 @@ The **Large Language Model revolution** exemplifies how these technologies syner
 
 ## References
 
-Ayguadé, E., Copty, N., Duran, A., Hoeflinger, J., Lin, Y., Massaioli, F., ... & Teruel, X. (2009). The design of OpenMP tasks. *IEEE Transactions on Parallel and Distributed Systems*, 20(3), 404-418.
+Ayguadé, E., Copty, N., Duran, A., Hoeflinger, J., Lin, Y., Massaioli, F., ... & Teruel, X. (2009). The design of OpenMP tasks. _IEEE Transactions on Parallel and Distributed Systems_, 20(3), 404-418.
 
-Balaji, P., Buntinas, D., Goodell, D., Gropp, W., Kumar, S., Lusk, E., ... & Thakur, R. (2009). MPI on a million processors. In *European Parallel Virtual Machine/Message Passing Interface Users' Group Meeting* (pp. 20-30). Springer.
+Balaji, P., Buntinas, D., Goodell, D., Gropp, W., Kumar, S., Lusk, E., ... & Thakur, R. (2009). MPI on a million processors. In _European Parallel Virtual Machine/Message Passing Interface Users' Group Meeting_ (pp. 20-30). Springer.
 
-Brown, T., Mann, B., Ryder, N., Subbiah, M., Kaplan, J. D., Dhariwal, P., ... & Amodei, D. (2020). Language models are few-shot learners. *Advances in Neural Information Processing Systems*, 33, 1877-1901.
+Brown, T., Mann, B., Ryder, N., Subbiah, M., Kaplan, J. D., Dhariwal, P., ... & Amodei, D. (2020). Language models are few-shot learners. _Advances in Neural Information Processing Systems_, 33, 1877-1901.
 
-Chapman, B., Jost, G., & Van Der Pas, R. (2007). *Using OpenMP: portable shared memory parallel programming*. MIT Press.
+Chapman, B., Jost, G., & Van Der Pas, R. (2007). _Using OpenMP: portable shared memory parallel programming_. MIT Press.
 
-Dagum, L., & Menon, R. (1998). OpenMP: an industry standard API for shared-memory programming. *IEEE Computational Science and Engineering*, 5(1), 46-55.
+Dagum, L., & Menon, R. (1998). OpenMP: an industry standard API for shared-memory programming. _IEEE Computational Science and Engineering_, 5(1), 46-55.
 
-Dettmers, T., Lewis, M., Belkada, Y., & Zettlemoyer, L. (2022). LLM.int8(): 8-bit matrix multiplication for transformers at scale. *arXiv preprint arXiv:2208.07339*.
+Dettmers, T., Lewis, M., Belkada, Y., & Zettlemoyer, L. (2022). LLM.int8(): 8-bit matrix multiplication for transformers at scale. _arXiv preprint arXiv:2208.07339_.
 
-Fedus, W., Zoph, B., & Shazeer, N. (2022). Switch transformer: Scaling to trillion parameter models with simple and efficient sparsity. *Journal of Machine Learning Research*, 23(120), 1-39.
+Fedus, W., Zoph, B., & Shazeer, N. (2022). Switch transformer: Scaling to trillion parameter models with simple and efficient sparsity. _Journal of Machine Learning Research_, 23(120), 1-39.
 
-Gropp, W., Lusk, E., & Skjellum, A. (2014). *Using MPI: portable parallel programming with the message-passing interface* (3rd ed.). MIT Press.
+Gropp, W., Lusk, E., & Skjellum, A. (2014). _Using MPI: portable parallel programming with the message-passing interface_ (3rd ed.). MIT Press.
 
-Harris, M. (2007). Optimizing parallel reduction in CUDA. *NVIDIA Developer Technology*, 2(4), 70.
+Harris, M. (2007). Optimizing parallel reduction in CUDA. _NVIDIA Developer Technology_, 2(4), 70.
 
-Hoefler, T., & Lumsdaine, A. (2010). Message progression in parallel computing-to thread or not to thread? In *2010 IEEE International Conference on Cluster Computing* (pp. 213-222). IEEE.
+Hoefler, T., & Lumsdaine, A. (2010). Message progression in parallel computing-to thread or not to thread? In _2010 IEEE International Conference on Cluster Computing_ (pp. 213-222). IEEE.
 
-Kirk, D. B., & Hwu, W. M. W. (2016). *Programming massively parallel processors: a hands-on approach*. Morgan Kaufmann.
+Kirk, D. B., & Hwu, W. M. W. (2016). _Programming massively parallel processors: a hands-on approach_. Morgan Kaufmann.
 
-Lee, S. I. (2006). *Efficient algorithms for listing combinatorial structures*. Cambridge University Press.
+Lee, S. I. (2006). _Efficient algorithms for listing combinatorial structures_. Cambridge University Press.
 
-Mattson, T., Sanders, B., & Massingill, B. (2004). *Patterns for parallel programming*. Addison-Wesley Professional.
+Mattson, T., Sanders, B., & Massingill, B. (2004). _Patterns for parallel programming_. Addison-Wesley Professional.
 
-Müller, M. S., Baron, J., Brantley, W. C., Feng, H., Hackenberg, D., Henschel, R., ... & Mey, D. A. (2012). SPEC OMP2012—an application benchmark suite for parallel systems using OpenMP. In *International Workshop on OpenMP* (pp. 223-236). Springer.
+Müller, M. S., Baron, J., Brantley, W. C., Feng, H., Hackenberg, D., Henschel, R., ... & Mey, D. A. (2012). SPEC OMP2012—an application benchmark suite for parallel systems using OpenMP. In _International Workshop on OpenMP_ (pp. 223-236). Springer.
 
-Narayanan, D., Shoeybi, M., Casper, J., LeGresley, P., Patwary, M., Korthikanti, V., ... & Catanzaro, B. (2021). Efficient large-scale language model training on GPU clusters using megatron-LM. In *Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis* (pp. 1-15).
+Narayanan, D., Shoeybi, M., Casper, J., LeGresley, P., Patwary, M., Korthikanti, V., ... & Catanzaro, B. (2021). Efficient large-scale language model training on GPU clusters using megatron-LM. In _Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis_ (pp. 1-15).
 
-Nickolls, J., Buck, I., Garland, M., & Skadron, K. (2008). Scalable parallel programming with CUDA. *Queue*, 6(2), 40-53.
+Nickolls, J., Buck, I., Garland, M., & Skadron, K. (2008). Scalable parallel programming with CUDA. _Queue_, 6(2), 40-53.
 
-NVIDIA. (2022). *NVIDIA H100 Tensor Core GPU Architecture*. NVIDIA Corporation.
+NVIDIA. (2022). _NVIDIA H100 Tensor Core GPU Architecture_. NVIDIA Corporation.
 
-OpenMP Architecture Review Board. (2021). *OpenMP Application Programming Interface Version 5.2*. OpenMP ARB.
+OpenMP Architecture Review Board. (2021). _OpenMP Application Programming Interface Version 5.2_. OpenMP ARB.
 
-Owens, J. D., Houston, M., Luebke, D., Green, S., Stone, J. E., & Phillips, J. C. (2008). GPU computing. *Proceedings of the IEEE*, 96(5), 879-899.
+Owens, J. D., Houston, M., Luebke, D., Green, S., Stone, J. E., & Phillips, J. C. (2008). GPU computing. _Proceedings of the IEEE_, 96(5), 879-899.
 
-Pacheco, P. (2011). *An introduction to parallel programming*. Morgan Kaufmann.
+Pacheco, P. (2011). _An introduction to parallel programming_. Morgan Kaufmann.
 
-Paszke, A., Gross, S., Massa, F., Lerer, A., Bradbury, J., Chanan, G., ... & Chintala, S. (2019). PyTorch: An imperative style, high-performance deep learning library. *Advances in Neural Information Processing Systems*, 32, 8026-8037.
+Paszke, A., Gross, S., Massa, F., Lerer, A., Bradbury, J., Chanan, G., ... & Chintala, S. (2019). PyTorch: An imperative style, high-performance deep learning library. _Advances in Neural Information Processing Systems_, 32, 8026-8037.
 
-Potluri, S., Hamidouche, K., Venkatesh, A., Bureddy, D., & Panda, D. K. (2013). Efficient inter-node MPI communication using GPUDirect RDMA for InfiniBand clusters with NVIDIA GPUs. In *2013 42nd International Conference on Parallel Processing* (pp. 80-89). IEEE.
+Potluri, S., Hamidouche, K., Venkatesh, A., Bureddy, D., & Panda, D. K. (2013). Efficient inter-node MPI communication using GPUDirect RDMA for InfiniBand clusters with NVIDIA GPUs. In _2013 42nd International Conference on Parallel Processing_ (pp. 80-89). IEEE.
 
-Quinn, M. J. (2003). *Parallel programming in C with MPI and OpenMP*. McGraw-Hill Education.
+Quinn, M. J. (2003). _Parallel programming in C with MPI and OpenMP_. McGraw-Hill Education.
 
-Rabenseifner, R., Hager, G., & Jost, G. (2009). Hybrid MPI/OpenMP parallel programming on clusters of multi-core SMP nodes. In *2009 17th Euromicro International Conference on Parallel, Distributed and Network-based Processing* (pp. 427-436). IEEE.
+Rabenseifner, R., Hager, G., & Jost, G. (2009). Hybrid MPI/OpenMP parallel programming on clusters of multi-core SMP nodes. In _2009 17th Euromicro International Conference on Parallel, Distributed and Network-based Processing_ (pp. 427-436). IEEE.
 
-Sanders, J., & Kandrot, E. (2010). *CUDA by example: an introduction to general-purpose GPU programming*. Addison-Wesley Professional.
+Sanders, J., & Kandrot, E. (2010). _CUDA by example: an introduction to general-purpose GPU programming_. Addison-Wesley Professional.
 
-Sterling, T., Salmon, J., Becker, D. J., & Savarese, D. F. (1999). *How to build a beowulf: a guide to the implementation and application of PC clusters*. MIT Press.
+Sterling, T., Salmon, J., Becker, D. J., & Savarese, D. F. (1999). _How to build a beowulf: a guide to the implementation and application of PC clusters_. MIT Press.
 
-Terboven, C., Mey, D. A., Schmidl, D., Jin, H., & Reichstein, T. (2008). Data and thread affinity in OpenMP programs. In *Proceedings of the 2008 workshop on Memory access on future processors* (pp. 377-384).
+Terboven, C., Mey, D. A., Schmidl, D., Jin, H., & Reichstein, T. (2008). Data and thread affinity in OpenMP programs. In _Proceedings of the 2008 workshop on Memory access on future processors_ (pp. 377-384).
 
-Teruel, X., Martorell, X., Duran, A., Ferrer, R., & Ayguadé, E. (2019). Support for OpenMP tasks in Nanos v6. In *International Workshop on OpenMP* (pp. 256-268). Springer.
+Teruel, X., Martorell, X., Duran, A., Ferrer, R., & Ayguadé, E. (2019). Support for OpenMP tasks in Nanos v6. In _International Workshop on OpenMP_ (pp. 256-268). Springer.
 
-Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). Attention is all you need. *Advances in Neural Information Processing Systems*, 30, 5998-6008.
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). Attention is all you need. _Advances in Neural Information Processing Systems_, 30, 5998-6008.
 
-Volkov, V., & Demmel, J. W. (2008). Benchmarking GPUs to tune dense linear algebra. In *SC'08: Proceedings of the 2008 ACM/IEEE Conference on Supercomputing* (pp. 1-11). IEEE.
+Volkov, V., & Demmel, J. W. (2008). Benchmarking GPUs to tune dense linear algebra. In _SC'08: Proceedings of the 2008 ACM/IEEE Conference on Supercomputing_ (pp. 1-11). IEEE.
 
-Walker, D. W., & Dongarra, J. J. (1996). MPI: a standard message passing interface. *Supercomputer*, 12, 56-68. 
+Walker, D. W., & Dongarra, J. J. (1996). MPI: a standard message passing interface. _Supercomputer_, 12, 56-68.

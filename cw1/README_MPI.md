@@ -388,6 +388,6 @@ For technical issues or questions about the MPI components:
 
 ---
 
-*Last Updated: [Current Date]*
-*Author: [Your Name]*
+*Last Updated: 30/06/2025*
+*Author: Matthew Loh Yet Marn*
 *Course: 6004CEM Parallel and Distributed Programming* 

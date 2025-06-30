@@ -3,8 +3,8 @@
  * Part B: Static vs Dynamic Scheduling In-Depth Analysis
  * 6004CEM Parallel and Distributed Programming Coursework
  * 
- * Author: [Your Name]
- * Date: [Current Date]
+ * Author: Matthew Loh Yet Marn
+ * Date: 30/06/2025
  * 
  * Focus: Detailed comparison of static vs dynamic scheduling
  * Vector Sizes: Small to medium (1K, 10K, 50K, 100K)

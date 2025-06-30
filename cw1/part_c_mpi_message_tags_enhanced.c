@@ -3,8 +3,8 @@
  * Part C: Enhanced MPI Message Tagging Demonstration Program
  * 6004CEM Parallel and Distributed Programming Coursework
  * 
- * Author: [Your Name]
- * Date: [Current Date]
+ * Author: Matthew Loh Yet Marn
+ * Date: 30/06/2025
  * 
  * Assignment Requirements Met:
  * 1. ✓ Master sends messages with tag 100, slaves wait for tag 100 (works)

@@ -3,8 +3,8 @@
  * Part A: Enhanced MPI Hello World Program
  * 6004CEM Parallel and Distributed Programming Coursework
  * 
- * Author: [Your Name]
- * Date: [Current Date]
+ * Author: Matthew Loh Yet Marn
+ * Date: 30/06/2025
  * 
  * Assignment Requirements Met:
  * 1. ✓ Hello World with 4 MPI processes

@@ -1,4 +1,5 @@
 # 6004CEM Assignment Submission Checklist
+
 ## Complete Portfolio Element - Distributed Computing Component
 
 ---
@@ -8,6 +9,7 @@
 ### **Core Requirements Fulfilled:**
 
 #### **Part A (5% of portfolio grade) - ✅ COMPLETE**
+
 - ✅ **File**: `part_a_mpi_hello_world_enhanced.c`
 - ✅ **Executable**: `part_a_mpi_hello_world_enhanced`
 - ✅ **Requirements Met**:
@@ -18,6 +20,7 @@
   - Screenshot capability (system verification) ✓
 
 #### **Part B (25% of portfolio grade) - ✅ COMPLETE**
+
 - ✅ **File**: `part_b_mpi_master_slave_enhanced.c`
 - ✅ **Executable**: `part_b_mpi_master_slave_enhanced`
 - ✅ **Requirements Met**:
@@ -28,6 +31,7 @@
   - Screenshot capability (system verification) ✓
 
 #### **Part C (20% of portfolio grade) - ✅ COMPLETE**
+
 - ✅ **File**: `mpi_part_c_tags.c`
 - ✅ **Executable**: `mpi_part_c_tags`
 - ✅ **Requirements Met**:
@@ -41,51 +45,64 @@
 ## 📁 **Submission Files Ready:**
 
 ### **Core Program Files:**
+
 1. **`part_a_mpi_hello_world_enhanced.c`** (14.7KB)
 2. **`part_b_mpi_master_slave_enhanced.c`** (17.2KB)
 3. **`mpi_part_c_tags.c`** (6.6KB)
 
 ### **Build System:**
-4. **`Makefile`** (4.0KB) - Enhanced compilation support
+
+1. **`Makefile`** (4.0KB) - Enhanced compilation support
 
 ### **Documentation:**
-5. **`README_MPI.md`** (9.6KB) - Technical documentation
-6. **`DISTRIBUTED_COMPUTING_ACADEMIC_REPORT.md`** (18.5KB) - **MAIN ACADEMIC SUBMISSION**
+
+1. **`README_MPI.md`** (9.6KB) - Technical documentation
+2. **`DISTRIBUTED_COMPUTING_ACADEMIC_REPORT.md`** (18.5KB) - **MAIN ACADEMIC SUBMISSION**
 
 ### **Verification:**
-7. **System verification built into programs** (hostname, user, timestamp display)
+
+1. **System verification built into programs** (hostname, user, timestamp display)
 
 ---
 
 ## 🖼️ **Screenshot Requirements:**
 
 ### **For Part A:**
+
 ```bash
 # Run this command and take screenshot
 mpirun -np 4 ./part_a_mpi_hello_world_enhanced
 ```
+
 **Screenshot should show:**
+
 - Your hostname/username
 - 4 processes executing
 - Process mapping information
 - System verification details
 
 ### **For Part B:**
+
 ```bash
 # Run this command and take screenshot
 mpirun -np 4 ./part_b_mpi_master_slave_enhanced
 ```
+
 **Screenshot should show:**
+
 - Master-slave communication working
 - Personalized messages from each slave
 - Your system verification info
 
 ### **For Part C:**
+
 ```bash
 # Run this command and take screenshot
 timeout 15 mpirun -np 4 ./mpi_part_c_tags
 ```
+
 **Screenshot should show:**
+
 - Working tag scenario (100↔100)
 - Hang demonstration (100→101)
 - Explanation of deadlock
@@ -96,9 +113,11 @@ timeout 15 mpirun -np 4 ./mpi_part_c_tags
 ## 📚 **Academic Documentation:**
 
 ### **Main Academic Report:**
+
 **File**: `DISTRIBUTED_COMPUTING_ACADEMIC_REPORT.md`
 
 **Content Includes:**
+
 - **Executive Summary** with key achievements
 - **Theoretical foundation** and MPI concepts
 - **Implementation analysis** for all three parts
@@ -110,6 +129,7 @@ timeout 15 mpirun -np 4 ./mpi_part_c_tags
 - **Appendices** with technical details
 
 **Document Stats:**
+
 - **Length**: 480 lines / ~3,200 words
 - **Academic Quality**: University-level analysis
 - **Technical Depth**: Professional-grade implementation details
@@ -122,18 +142,21 @@ timeout 15 mpirun -np 4 ./mpi_part_c_tags
 ### **Quality Indicators Achieved:**
 
 #### **Program Functionality (First Class: ≥70%)**
+
 - ✅ Code exceeds expectations and always runs successfully
 - ✅ Demonstration screenshots available
 - ✅ Meets and exceeds all assignment specifications
 - ✅ Uses MPI correctly and comprehensively
 
 #### **Code Quality (First Class: ≥70%)**
+
 - ✅ Excellent code quality with comprehensive comments
 - ✅ Proper layout and perfect indenting
 - ✅ Professional header blocks and documentation
 - ✅ Error handling and robustness features
 
 #### **Academic Analysis (First Class: ≥70%)**
+
 - ✅ Deep theoretical understanding demonstrated
 - ✅ Critical analysis of distributed computing concepts
 - ✅ Performance evaluation and optimization discussion
@@ -144,6 +167,7 @@ timeout 15 mpirun -np 4 ./mpi_part_c_tags
 ## 🚀 **Quick Execution Guide:**
 
 ### **Environment Setup:**
+
 ```bash
 # Install MPI (if needed)
 sudo apt install openmpi-bin libopenmpi-dev
@@ -156,11 +180,12 @@ ls -la part_a_mpi_* part_b_mpi_* mpi_part_c_*
 ```
 
 ### **Testing Commands:**
+
 ```bash
 # Test Part A
 echo "4" | mpirun -np 4 ./part_a_mpi_hello_world_enhanced
 
-# Test Part B  
+# Test Part B
 mpirun -np 4 ./part_b_mpi_master_slave_enhanced
 
 # Test Part C
@@ -175,8 +200,10 @@ make test-mpi
 ## 📝 **Final Submission Steps:**
 
 ### **1. Organize Files:**
+
 Create a folder structure like:
-```
+
+```txt
 Portfolio_DistributedComputing/
 ├── Programs/
 │   ├── part_a_mpi_hello_world_enhanced.c
@@ -193,12 +220,14 @@ Portfolio_DistributedComputing/
 ```
 
 ### **2. Verify Requirements:**
+
 - ✅ All programs compile and run successfully
 - ✅ Screenshots show your username/system
 - ✅ Academic report demonstrates understanding
 - ✅ Code quality meets university standards
 
 ### **3. Submit:**
+
 - Upload folder to assignment submission system
 - Include academic report as main documentation
 - Ensure screenshots clearly show verification info
@@ -208,11 +237,13 @@ Portfolio_DistributedComputing/
 ## 🏆 **Achievement Summary:**
 
 **Portfolio Component**: Distributed Computing (50% of total portfolio)
+
 - **Part A**: 5% ✅ EXCEEDED EXPECTATIONS
-- **Part B**: 25% ✅ EXCEEDED EXPECTATIONS  
+- **Part B**: 25% ✅ EXCEEDED EXPECTATIONS
 - **Part C**: 20% ✅ EXCEEDED EXPECTATIONS
 
 **Enhanced Features Delivered:**
+
 - **300% more functionality** than basic requirements
 - **Professional-grade code quality** with comprehensive documentation
 - **Academic-level analysis** demonstrating deep understanding
@@ -226,4 +257,4 @@ Portfolio_DistributedComputing/
 
 **✅ READY FOR SUBMISSION** 🎓
 
-*Your distributed computing component now matches the exceptional quality of your enhanced parallelism work and exceeds all assignment requirements.* 
+_Your distributed computing component now matches the exceptional quality of your enhanced parallelism work and exceeds all assignment requirements._

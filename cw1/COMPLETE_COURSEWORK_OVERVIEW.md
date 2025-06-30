@@ -1,10 +1,10 @@
 # 6004CEM Complete Coursework Package Overview
 ## Parallel and Distributed Programming - Full Submission Package
 
-**Student**: [Your Name]  
-**Student ID**: [Your Student ID]  
+**Student**: Matthew Loh Yet Marn  
+**Student ID**: 13445539  
 **Module**: 6004CEM Parallel and Distributed Programming  
-**Submission Date**: [Current Date]  
+**Submission Date**: 30/06/2025  
 **Institution**: Coventry University
 
 ---

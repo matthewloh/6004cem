@@ -1,7 +1,7 @@
 # 6004CEM Final Submission Action Plan & Framework
 ## Complete Coursework Organization Strategy
 
-**Student**: [Your Name]  
+**Student**: Matthew Loh Yet Marn  
 **Module**: 6004CEM Parallel and Distributed Programming  
 **Expected Grade**: First Class (74-80%)  
 **Total Components**: 3 tasks worth 100% module grade
