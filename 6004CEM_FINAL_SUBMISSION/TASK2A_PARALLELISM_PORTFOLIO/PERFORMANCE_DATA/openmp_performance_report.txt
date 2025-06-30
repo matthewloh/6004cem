@@ -1,0 +1,26 @@
+==========================================
+OpenMP Coursework Performance Report
+==========================================
+Generated: Mon Jun  9 09:53:59 PM +08 2025
+Hostname: Ubuntor
+User: matthew
+CPU Cores: 8
+GCC Version: gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+
+Programs Tested:
+✓ part_a_hello_openmp
+✓ part_b_vector_addition
+✓ part_c_matrix_calculation
+
+Environment Variables:
+OMP_NUM_THREADS: 8
+
+Compilation Flags Used:
+gcc -fopenmp -O3 -Wall -Wextra -march=native ... -lm
+
+Notes:
+- All programs demonstrate proper OpenMP usage
+- Performance varies based on system architecture
+- Screenshots taken with hostname visible for verification
+- Multiple test runs ensure statistical accuracy
+

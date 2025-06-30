@@ -1,0 +1,306 @@
+================================================================
+Part B: Static vs Dynamic Scheduling In-Depth Analysis
+6004CEM Parallel and Distributed Programming
+================================================================
+
+=== SYSTEM VERIFICATION INFORMATION ===
+Hostname: Ubuntor
+System: Linux 6.11.0-26-generic
+Architecture: x86_64
+User: matthew
+Execution Time: Tue Jun 10 11:50:50 2025
+CPU Cores: 8
+Max OpenMP Threads: 8
+=========================================
+
+
+================================================================
+DETAILED PERFORMANCE COMPARISON: 1K elements
+================================================================
+
+Detailed Performance Results:
+=============================================================================
+Threads | Static Time | Static Std | Dynamic Time | Dynamic Std | Winner
+        |    (ms)     |    (ms)    |     (ms)     |    (ms)     |       
+--------|-------------|------------|--------------|-------------|--------
+  Testing STATIC scheduling with 1 threads...
+  Testing DYNAMIC scheduling with 1 threads (chunk: 100)...
+      1 |     0.0016 |    0.0031 |      0.0010 |     0.0011 | Dynamic (56.3%)
+  Testing STATIC scheduling with 2 threads...
+  Testing DYNAMIC scheduling with 2 threads (chunk: 50)...
+      2 |     0.2539 |    0.4612 |      0.0009 |     0.0005 | Dynamic (27650.9%)
+  Testing STATIC scheduling with 4 threads...
+  Testing DYNAMIC scheduling with 4 threads (chunk: 25)...
+      4 |     0.1089 |    0.3246 |      0.0014 |     0.0002 | Dynamic (7423.3%)
+  Testing STATIC scheduling with 8 threads...
+  Testing DYNAMIC scheduling with 8 threads (chunk: 12)...
+      8 |     0.3407 |    0.9982 |      0.0029 |     0.0007 | Dynamic (11643.2%)
+
+--- Results Verification ---
+✓ Static and Dynamic scheduling produce identical results
+
+--- Work Distribution Analysis ---
+Vector size: 1000 elements
+Number of threads: 4
+
+STATIC scheduling distribution:
+  Thread 0: elements 0 to 249 (250 elements)
+  Thread 1: elements 250 to 499 (250 elements)
+  Thread 2: elements 500 to 749 (250 elements)
+  Thread 3: elements 750 to 999 (250 elements)
+
+DYNAMIC scheduling characteristics:
+  - Work assigned at runtime
+  - Default chunk size: typically 1
+  - Load balancing overhead present
+  - Better adaptation to system load
+
+================================================================
+DETAILED PERFORMANCE COMPARISON: 10K elements
+================================================================
+
+Detailed Performance Results:
+=============================================================================
+Threads | Static Time | Static Std | Dynamic Time | Dynamic Std | Winner
+        |    (ms)     |    (ms)    |     (ms)     |    (ms)     |       
+--------|-------------|------------|--------------|-------------|--------
+  Testing STATIC scheduling with 1 threads...
+  Testing DYNAMIC scheduling with 1 threads (chunk: 1000)...
+      1 |     0.0097 |    0.0206 |      0.0082 |     0.0152 | Dynamic (19.5%)
+  Testing STATIC scheduling with 2 threads...
+  Testing DYNAMIC scheduling with 2 threads (chunk: 500)...
+      2 |     0.3283 |    0.9773 |      0.0033 |     0.0012 | Dynamic (9815.8%)
+  Testing STATIC scheduling with 4 threads...
+  Testing DYNAMIC scheduling with 4 threads (chunk: 250)...
+      4 |     1.3607 |    2.7812 |      0.0235 |     0.0435 | Dynamic (5698.5%)
+  Testing STATIC scheduling with 8 threads...
+  Testing DYNAMIC scheduling with 8 threads (chunk: 125)...
+      8 |     0.3516 |    1.0503 |      0.0031 |     0.0016 | Dynamic (11161.2%)
+
+--- Results Verification ---
+✓ Static and Dynamic scheduling produce identical results
+
+--- Work Distribution Analysis ---
+Vector size: 10000 elements
+Number of threads: 4
+
+STATIC scheduling distribution:
+  Thread 0: elements 0 to 2499 (2500 elements)
+  Thread 1: elements 2500 to 4999 (2500 elements)
+  Thread 2: elements 5000 to 7499 (2500 elements)
+  Thread 3: elements 7500 to 9999 (2500 elements)
+
+DYNAMIC scheduling characteristics:
+  - Work assigned at runtime
+  - Default chunk size: typically 1
+  - Load balancing overhead present
+  - Better adaptation to system load
+
+================================================================
+CHUNK SIZE OPTIMIZATION ANALYSIS (Vector size: 10000)
+================================================================
+Testing dynamic scheduling with different chunk sizes (4 threads):
+
+Chunk Size | Avg Time (ms) | Std Dev (ms) | Throughput   | Overhead
+-----------|---------------|--------------|--------------|----------
+  Testing DYNAMIC scheduling with 4 threads (chunk: 1)...
+         1 |       0.6984 |      1.0009 |    1.43e+07 |    +0.0%
+  Testing DYNAMIC scheduling with 4 threads (chunk: 10)...
+        10 |       0.0304 |      0.0131 |    3.29e+08 |   -95.6%
+  Testing DYNAMIC scheduling with 4 threads (chunk: 100)...
+       100 |       0.0143 |      0.0165 |    7.00e+08 |   -98.0%
+  Testing DYNAMIC scheduling with 4 threads (chunk: 500)...
+       500 |       0.0070 |      0.0149 |    1.44e+09 |   -99.0%
+  Testing DYNAMIC scheduling with 4 threads (chunk: 1000)...
+      1000 |       0.0063 |      0.0111 |    1.58e+09 |   -99.1%
+  Testing DYNAMIC scheduling with 4 threads (chunk: 2000)...
+      2000 |       0.0073 |      0.0166 |    1.37e+09 |   -99.0%
+
+================================================================
+DETAILED PERFORMANCE COMPARISON: 50K elements
+================================================================
+
+Detailed Performance Results:
+=============================================================================
+Threads | Static Time | Static Std | Dynamic Time | Dynamic Std | Winner
+        |    (ms)     |    (ms)    |     (ms)     |    (ms)     |       
+--------|-------------|------------|--------------|-------------|--------
+  Testing STATIC scheduling with 1 threads...
+  Testing DYNAMIC scheduling with 1 threads (chunk: 1000)...
+      1 |     0.3413 |    0.9895 |      0.0412 |     0.0894 | Dynamic (728.6%)
+  Testing STATIC scheduling with 2 threads...
+  Testing DYNAMIC scheduling with 2 threads (chunk: 1000)...
+      2 |     1.0970 |    2.1384 |      0.1867 |     0.3388 | Dynamic (487.4%)
+  Testing STATIC scheduling with 4 threads...
+  Testing DYNAMIC scheduling with 4 threads (chunk: 1000)...
+      4 |     0.0647 |    0.1461 |      0.0049 |     0.0005 | Dynamic (1217.0%)
+  Testing STATIC scheduling with 8 threads...
+  Testing DYNAMIC scheduling with 8 threads (chunk: 625)...
+      8 |     1.2215 |    3.2905 |      0.0078 |     0.0100 | Dynamic (15494.7%)
+
+--- Results Verification ---
+✓ Static and Dynamic scheduling produce identical results
+
+--- Work Distribution Analysis ---
+Vector size: 50000 elements
+Number of threads: 4
+
+STATIC scheduling distribution:
+  Thread 0: elements 0 to 12499 (12500 elements)
+  Thread 1: elements 12500 to 24999 (12500 elements)
+  Thread 2: elements 25000 to 37499 (12500 elements)
+  Thread 3: elements 37500 to 49999 (12500 elements)
+
+DYNAMIC scheduling characteristics:
+  - Work assigned at runtime
+  - Default chunk size: typically 1
+  - Load balancing overhead present
+  - Better adaptation to system load
+
+================================================================
+DETAILED PERFORMANCE COMPARISON: 100K elements
+================================================================
+
+Detailed Performance Results:
+=============================================================================
+Threads | Static Time | Static Std | Dynamic Time | Dynamic Std | Winner
+        |    (ms)     |    (ms)    |     (ms)     |    (ms)     |       
+--------|-------------|------------|--------------|-------------|--------
+  Testing STATIC scheduling with 1 threads...
+  Testing DYNAMIC scheduling with 1 threads (chunk: 1000)...
+      1 |     0.0623 |    0.1234 |      0.0590 |     0.1033 | Dynamic (5.6%)
+  Testing STATIC scheduling with 2 threads...
+  Testing DYNAMIC scheduling with 2 threads (chunk: 1000)...
+      2 |     1.8876 |    1.8280 |      0.2178 |     0.5596 | Dynamic (766.7%)
+  Testing STATIC scheduling with 4 threads...
+  Testing DYNAMIC scheduling with 4 threads (chunk: 1000)...
+      4 |     0.1631 |    0.4643 |      0.0101 |     0.0010 | Dynamic (1519.1%)
+  Testing STATIC scheduling with 8 threads...
+  Testing DYNAMIC scheduling with 8 threads (chunk: 1000)...
+      8 |     0.6717 |    1.3522 |      0.0090 |     0.0076 | Dynamic (7381.0%)
+
+--- Results Verification ---
+✓ Static and Dynamic scheduling produce identical results
+
+--- Work Distribution Analysis ---
+Vector size: 100000 elements
+Number of threads: 4
+
+STATIC scheduling distribution:
+  Thread 0: elements 0 to 24999 (25000 elements)
+  Thread 1: elements 25000 to 49999 (25000 elements)
+  Thread 2: elements 50000 to 74999 (25000 elements)
+  Thread 3: elements 75000 to 99999 (25000 elements)
+
+DYNAMIC scheduling characteristics:
+  - Work assigned at runtime
+  - Default chunk size: typically 1
+  - Load balancing overhead present
+  - Better adaptation to system load
+
+================================================================
+CHUNK SIZE OPTIMIZATION ANALYSIS (Vector size: 100000)
+================================================================
+Testing dynamic scheduling with different chunk sizes (4 threads):
+
+Chunk Size | Avg Time (ms) | Std Dev (ms) | Throughput   | Overhead
+-----------|---------------|--------------|--------------|----------
+  Testing DYNAMIC scheduling with 4 threads (chunk: 1)...
+         1 |       1.9618 |      0.1005 |    5.10e+07 |    +0.0%
+  Testing DYNAMIC scheduling with 4 threads (chunk: 10)...
+        10 |       0.2041 |      0.0067 |    4.90e+08 |   -89.6%
+  Testing DYNAMIC scheduling with 4 threads (chunk: 100)...
+       100 |       0.0284 |      0.0020 |    3.52e+09 |   -98.6%
+  Testing DYNAMIC scheduling with 4 threads (chunk: 500)...
+       500 |       0.0096 |      0.0005 |    1.04e+10 |   -99.5%
+  Testing DYNAMIC scheduling with 4 threads (chunk: 1000)...
+      1000 |       0.0082 |      0.0002 |    1.21e+10 |   -99.6%
+  Testing DYNAMIC scheduling with 4 threads (chunk: 2000)...
+      2000 |       0.0080 |      0.0002 |    1.25e+10 |   -99.6%
+
+================================================================
+MEMORY ACCESS PATTERN ANALYSIS
+================================================================
+Vector Addition Memory Access Characteristics:
+- Sequential memory access pattern
+- High spatial locality (adjacent elements)
+- Read-heavy workload (2 reads, 1 write per operation)
+- Memory bandwidth bound for large vectors
+- Cache-friendly for smaller vectors
+
+Impact on Scheduling:
+STATIC Scheduling:
+  ✓ Excellent cache locality (contiguous chunks)
+  ✓ Predictable memory access patterns
+  ✓ No synchronization overhead
+  ✗ Cannot adapt to memory bandwidth variations
+
+DYNAMIC Scheduling:
+  ✓ Can adapt to memory contention
+  ✓ Better load balancing under varying system load
+  ✗ Potential cache locality issues
+  ✗ Synchronization overhead for work assignment
+  ✗ Less predictable memory access patterns
+
+================================================================
+ANALYSIS: WHY DYNAMIC SCHEDULING MIGHT BE FASTER
+================================================================
+Potential reasons why Dynamic scheduling outperforms Static:
+
+1. SYSTEM LOAD ADAPTATION:
+   - Other processes may be using CPU cores
+   - Dynamic scheduling adapts to varying thread performance
+   - Static scheduling assumes uniform thread capabilities
+
+2. MEMORY SUBSYSTEM BEHAVIOR:
+   - Memory bandwidth contention between cores
+   - NUMA effects on multi-socket systems
+   - Dynamic scheduling may reduce memory hotspots
+
+3. CACHE EFFECTS:
+   - Smaller chunks in dynamic scheduling may fit better in cache
+   - Reduced cache pollution from large static chunks
+   - Better cache utilization with smaller working sets
+
+4. THREAD SCHEDULING:
+   - OS thread scheduler interactions
+   - Context switching overhead differences
+   - Dynamic work distribution reduces idle time
+
+5. COMPILER OPTIMIZATIONS:
+   - Different optimization paths for static vs dynamic
+   - Loop unrolling and vectorization differences
+   - Memory prefetching behavior variations
+
+6. VECTOR SIZE EFFECTS:
+   - Smaller vectors benefit from dynamic's adaptability
+   - Overhead amortization differs between scheduling types
+   - Work granularity impacts on performance
+
+================================================================
+CONCLUSIONS AND RECOMMENDATIONS
+================================================================
+
+*** KEY FINDINGS ***
+1. Dynamic scheduling may outperform static for small-medium vectors
+2. Performance depends heavily on system state and load
+3. Chunk size optimization is crucial for dynamic scheduling
+4. Memory access patterns significantly impact performance
+5. Statistical analysis reveals performance variability
+
+*** RECOMMENDATIONS ***
+✓ Test both scheduling types with your specific workload
+✓ Consider system characteristics (cores, memory, load)
+✓ Optimize chunk sizes for dynamic scheduling
+✓ Use multiple runs for reliable performance measurements
+✓ Monitor system state during performance testing
+
+*** COURSEWORK VERIFICATION ***
+✓ Static scheduling implemented and analyzed
+✓ Dynamic scheduling implemented and analyzed
+✓ Comprehensive performance comparison completed
+✓ Statistical analysis with multiple runs
+✓ Detailed explanations of performance differences
+
+Program completed successfully!
+================================================================

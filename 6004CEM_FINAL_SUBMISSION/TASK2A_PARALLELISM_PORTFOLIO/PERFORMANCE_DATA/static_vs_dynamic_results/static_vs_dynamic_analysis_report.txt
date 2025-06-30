@@ -1,0 +1,66 @@
+==========================================
+Static vs Dynamic Scheduling Analysis Report
+==========================================
+Generated: Tue Jun 10 11:51:19 AM +08 2025
+Analysis Runtime: Approximately 2-5 minutes
+
+SYSTEM INFORMATION:
+Hostname: Ubuntor
+User: matthew
+CPU Cores: 8
+CPU Model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics
+Memory: 15Gi total
+GCC Version: gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+
+ANALYSIS CONFIGURATION:
+Source File: part_b_vector_static_vs_dynamic.c
+Executable: part_b_static_vs_dynamic
+Compilation Flags: -fopenmp -O3 -Wall -Wextra -march=native -mtune=native -ffast-math
+Vector Sizes Tested: 1K, 10K, 50K, 100K elements
+Thread Configurations: 1, 2, 4, 8 threads
+Runs per Configuration: 10 (for statistical accuracy)
+
+KEY FEATURES OF THIS ANALYSIS:
+✓ Focused comparison of static vs dynamic scheduling only
+✓ Smaller vector sizes for detailed analysis
+✓ Statistical analysis with standard deviation calculation
+✓ Chunk size optimization for dynamic scheduling
+✓ Memory access pattern analysis
+✓ Detailed explanation of performance differences
+✓ Work distribution visualization
+✓ System state monitoring during execution
+
+WHY THIS ANALYSIS IS VALUABLE:
+- Addresses the observation that dynamic scheduling often outperforms static
+- Uses smaller vectors where scheduling overhead is more significant
+- Provides statistical rigor with multiple runs
+- Explains the theoretical and practical reasons for performance differences
+- Optimizes chunk sizes for fair dynamic scheduling comparison
+
+COURSEWORK REQUIREMENTS ADDRESSED:
+✓ Vector addition with OpenMP work-sharing constructs
+✓ Static scheduling implementation and analysis
+✓ Dynamic scheduling implementation and analysis
+✓ Performance comparison and detailed analysis
+✓ Results verification and correctness checking
+✓ Comprehensive conclusions and recommendations
+
+SCREENSHOT REQUIREMENTS:
+📸 Take screenshots showing:
+   - Your hostname clearly visible in the terminal
+   - System verification information
+   - Performance comparison tables
+   - Results verification confirmations
+   - Analysis conclusions and recommendations
+
+FILES GENERATED:
+- Analysis output files in static_vs_dynamic_results/
+- Timing logs for performance monitoring
+- This comprehensive report
+
+NEXT STEPS:
+1. Review the detailed analysis output files
+2. Take required screenshots with hostname visible
+3. Analyze the performance differences and their explanations
+4. Use the findings to support your coursework conclusions
+
