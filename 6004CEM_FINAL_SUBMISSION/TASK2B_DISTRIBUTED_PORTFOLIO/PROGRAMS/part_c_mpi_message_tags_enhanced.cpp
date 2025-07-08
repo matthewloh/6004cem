@@ -169,17 +169,13 @@ public:
             cout << "   • Memory buffers may fill up over time" << endl;
             cout << "   • Requires external intervention (Ctrl+C, kill command)\n" << endl;
             
-            cout << "Starting hang demonstration with timeout protection..." << endl;
+            cout << "Starting hang demonstration with NON-BLOCKING timeout protection..." << endl;
             cout << "=========================================\n" << endl;
-            
-            // Set up timeout mechanism
-            signal(SIGALRM, timeoutHandler);
-            alarm(TIMEOUT_SECONDS);
             
             double start_time = MPI_Wtime();
             
             // Master sends messages with tag 100
-            for (int i = 1; i < size && !timeout_occurred; i++) {
+            for (int i = 1; i < size; i++) {
                 string message = "Message from Master to Process " + to_string(i) + 
                                " (Tag: " + to_string(HANGING_SEND_TAG) + ")";
                 
@@ -190,32 +186,76 @@ public:
                 cout << "✓ Message sent to process " << i << endl;
             }
             
-            if (!timeout_occurred) {
-                cout << "\nNow attempting to receive responses (this is where hanging occurs)..." << endl;
-                
-                // Master tries to receive responses - THIS WILL HANG
-                for (int i = 1; i < size && !timeout_occurred; i++) {
-                    char response[MAX_MESSAGE_LEN];
-                    MPI_Status status;
-                    
-                    cout << "Waiting for response from process " << i << "..." << endl;
-                    
-                    // This will hang because slaves are waiting for tag 101, not 100
-                    MPI_Recv(response, MAX_MESSAGE_LEN, MPI_CHAR, i, HANGING_SEND_TAG, MPI_COMM_WORLD, &status);
-                    cout << "Received response from process " << i << endl;
-                }
+            cout << "\nNow attempting to receive responses with NON-BLOCKING timeout..." << endl;
+            
+            // Use non-blocking receives with timeout
+            vector<MPI_Request> requests(size - 1);
+            vector<char*> buffers(size - 1);
+            vector<bool> completed(size - 1, false);
+            
+            // Allocate buffers and start non-blocking receives
+            for (int i = 1; i < size; i++) {
+                buffers[i - 1] = new char[MAX_MESSAGE_LEN];
+                MPI_Irecv(buffers[i - 1], MAX_MESSAGE_LEN, MPI_CHAR, i, HANGING_SEND_TAG, 
+                         MPI_COMM_WORLD, &requests[i - 1]);
+                cout << "Started non-blocking receive from process " << i << "..." << endl;
             }
             
-            alarm(0);  // Cancel alarm
+            // Wait with timeout using MPI_Test
+            bool timeout_reached = false;
+            double timeout_start = MPI_Wtime();
+            int completed_count = 0;
             
-            if (timeout_occurred) {
-                double end_time = MPI_Wtime();
+            while (completed_count < (size - 1) && !timeout_reached) {
+                double current_time = MPI_Wtime();
+                if ((current_time - timeout_start) >= TIMEOUT_SECONDS) {
+                    timeout_reached = true;
+                    break;
+                }
+                
+                // Test each request
+                for (int i = 0; i < (size - 1); i++) {
+                    if (!completed[i]) {
+                        int flag;
+                        MPI_Status status;
+                        MPI_Test(&requests[i], &flag, &status);
+                        
+                        if (flag) {
+                            completed[i] = true;
+                            completed_count++;
+                            cout << "✓ Received response from process " << (i + 1) 
+                                 << ": " << buffers[i] << endl;
+                        }
+                    }
+                }
+                
+                // Small delay to prevent busy waiting
+                usleep(100000); // 0.1 seconds
+            }
+            
+            // Cancel any pending requests
+            for (int i = 0; i < (size - 1); i++) {
+                if (!completed[i]) {
+                    MPI_Cancel(&requests[i]);
+                    MPI_Status status;
+                    MPI_Wait(&requests[i], &status);
+                }
+                delete[] buffers[i];
+            }
+            
+            double end_time = MPI_Wtime();
+            
+            if (timeout_reached) {
                 cout << "\n⚠ TIMEOUT OCCURRED AFTER " << fixed << setprecision(1) 
                      << (end_time - start_time) << " SECONDS" << endl;
                 cout << "✓ Hang demonstration completed (prevented infinite hang)" << endl;
                 cout << "✓ This confirms the tag mismatch causes deadlock" << endl;
+                cout << "✓ Completed " << completed_count << " out of " << (size - 1) 
+                     << " communications" << endl;
             } else {
-                cout << "✓ Communication completed (unexpected - should have hung)" << endl;
+                cout << "✓ All communications completed in " << fixed << setprecision(6) 
+                     << (end_time - start_time) << " seconds" << endl;
+                cout << "⚠ This was unexpected - tag mismatch should have caused hanging" << endl;
             }
             
             cout << "================================================\n" << endl;
@@ -225,20 +265,35 @@ public:
             char received_message[MAX_MESSAGE_LEN];
             MPI_Status status;
             
-            // Set up timeout for slaves too
-            signal(SIGALRM, timeoutHandler);
-            alarm(TIMEOUT_SECONDS);
+            // Use non-blocking receive with timeout for slaves too
+            MPI_Request request;
+            MPI_Irecv(received_message, MAX_MESSAGE_LEN, MPI_CHAR, 0, HANGING_RECEIVE_TAG, 
+                     MPI_COMM_WORLD, &request);
             
-            if (!timeout_occurred) {
-                // This receive will hang because no message with tag 101 will arrive
-                MPI_Recv(received_message, MAX_MESSAGE_LEN, MPI_CHAR, 0, HANGING_RECEIVE_TAG, MPI_COMM_WORLD, &status);
+            // Wait with timeout
+            double timeout_start = MPI_Wtime();
+            bool received = false;
+            
+            while (!received && (MPI_Wtime() - timeout_start) < TIMEOUT_SECONDS) {
+                int flag;
+                MPI_Test(&request, &flag, &status);
                 
-                // This code will never execute due to the hang
-                string response = "Process " + to_string(rank) + " received message";
-                MPI_Send(response.c_str(), response.length() + 1, MPI_CHAR, 0, HANGING_RECEIVE_TAG, MPI_COMM_WORLD);
+                if (flag) {
+                    received = true;
+                    // Send response back
+                    string response = "Process " + to_string(rank) + " received message";
+                    MPI_Send(response.c_str(), response.length() + 1, MPI_CHAR, 0, 
+                            HANGING_RECEIVE_TAG, MPI_COMM_WORLD);
+                }
+                
+                usleep(100000); // 0.1 seconds
             }
             
-            alarm(0);  // Cancel alarm
+            if (!received) {
+                // Cancel the pending receive
+                MPI_Cancel(&request);
+                MPI_Wait(&request, &status);
+            }
         }
     }
     
