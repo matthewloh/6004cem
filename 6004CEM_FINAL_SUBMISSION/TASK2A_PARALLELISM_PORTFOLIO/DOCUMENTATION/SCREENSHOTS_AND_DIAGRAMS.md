@@ -206,23 +206,24 @@ graph TD
 ### Part A: Enhanced OpenMP Hello World - System Verification
 
 #### System Configuration
-| Parameter          | Value                                          |
-|--------------------|------------------------------------------------|
-| **Hostname**       | Ubuntor                                        |
-| **System**         | Linux 6.11.0-29-generic                        |
-| **Architecture**   | x86_64                                         |
-| **CPU Model**      | AMD Ryzen 7 8845HS w/ Radeon 780M Graphics     |
-| **Logical Cores**  | 8                                              |
+
+| Parameter              | Value                                      |
+| ---------------------- | ------------------------------------------ |
+| **Hostname**           | Ubuntor                                    |
+| **System**             | Linux 6.11.0-29-generic                    |
+| **Architecture**       | x86_64                                     |
+| **CPU Model**          | AMD Ryzen 7 8845HS w/ Radeon 780M Graphics |
+| **Logical Cores**      | 8                                          |
 | **Max OpenMP Threads** | 8                                          |
-| **OpenMP Version** | 201511                                         |
+| **OpenMP Version**     | 201511                                     |
 
 #### Thread Creation Performance
 
-| Configuration                | Threads Requested | Threads Created | Execution Time (s) | Status   |
-|------------------------------|-------------------|-----------------|--------------------|----------|
-| **10 Threads (hardcoded)**   | 10                | 10              | 0.007688           | ✓ PASSED |
+| Configuration                  | Threads Requested | Threads Created | Execution Time (s) | Status   |
+| ------------------------------ | ----------------- | --------------- | ------------------ | -------- |
+| **10 Threads (hardcoded)**     | 10                | 10              | 0.007688           | ✓ PASSED |
 | **User-specified (4 threads)** | 4                 | 4               | 0.006180           | ✓ PASSED |
-| **Dynamic scaling test**     | 2-8               | 2-8             | Variable           | ✓ PASSED |
+| **Dynamic scaling test**       | 2-8               | 2-8             | Variable           | ✓ PASSED |
 
 ### Part B: Vector Addition Performance Comparison
 
@@ -231,7 +232,7 @@ graph TD
 **100K Elements Performance (Best Times)**
 
 | Threads | Static (s) | Dynamic (s)  | Guided (s) | Auto (s)     | Best Method |
-|---------|------------|--------------|------------|--------------|-------------|
+| ------- | ---------- | ------------ | ---------- | ------------ | ----------- |
 | 1       | 0.001143   | **0.000244** | 0.000785   | 0.000872     | Dynamic     |
 | 2       | 0.001002   | 0.000777     | 0.000046   | **0.000044** | Auto        |
 | 4       | 0.000442   | **0.000023** | 0.000029   | 0.000038     | Dynamic     |
@@ -240,7 +241,7 @@ graph TD
 **1M Elements Performance (Best Times)**
 
 | Threads | Static (s)   | Dynamic (s) | Guided (s) | Auto (s)     | Best Method |
-|---------|--------------|-------------|------------|--------------|-------------|
+| ------- | ------------ | ----------- | ---------- | ------------ | ----------- |
 | 1       | **0.003756** | 0.003973    | 0.008083   | 0.008107     | Static      |
 | 2       | 0.003373     | 0.003582    | 0.002552   | **0.001299** | Auto        |
 | 4       | 0.001121     | 0.002191    | 0.000745   | **0.000585** | Auto        |
@@ -248,12 +249,12 @@ graph TD
 
 **5M Elements Performance (Best Times)**
 
-| Threads | Static (s)   | Dynamic (s)  | Guided (s)   | Auto (s)   | Best Method |
-|---------|--------------|--------------|--------------|------------|-------------|
-| 1       | **0.032049** | 0.055740     | 0.287245     | 0.277620   | Static      |
-| 2       | 0.010121     | 0.009767     | **0.007195** | 0.009718   | Guided      |
-| 4       | 0.010691     | 0.009246     | **0.006599** | 0.009990   | Guided      |
-| 8       | 0.015181     | **0.012254** | 0.012584     | 0.024319   | Dynamic     |
+| Threads | Static (s)   | Dynamic (s)  | Guided (s)   | Auto (s) | Best Method |
+| ------- | ------------ | ------------ | ------------ | -------- | ----------- |
+| 1       | **0.032049** | 0.055740     | 0.287245     | 0.277620 | Static      |
+| 2       | 0.010121     | 0.009767     | **0.007195** | 0.009718 | Guided      |
+| 4       | 0.010691     | 0.009246     | **0.006599** | 0.009990 | Guided      |
+| 8       | 0.015181     | **0.012254** | 0.012584     | 0.024319 | Dynamic     |
 
 #### Key Findings for Vector Addition
 
@@ -270,74 +271,74 @@ graph TD
 **Performance Summary: Static vs Dynamic(chunk=1)**
 
 | Vector Size | Threads | Static Time (ms) | Dynamic(1) Time (ms) | Performance Winner | Overhead % |
-|-------------|---------|------------------|--------------------|-------------------|------------|
-| **1K**      | 1       | 0.0013           | 0.0045             | Static            | +237.9%    |
-|             | 2       | 0.0076           | 0.0305             | Static            | +299.2%    |
-|             | 4       | 0.0009           | 0.0378             | Static            | +4114.8%   |
-|             | 8       | 7.0123           | 6.9552             | Dynamic(1)        | +0.8%      |
-| **10K**     | 1       | 0.0047           | 0.0383             | Static            | +717.7%    |
-|             | 2       | 0.0175           | 0.3553             | Static            | +1930.3%   |
-|             | 4       | 0.0029           | 0.2885             | Static            | +9682.0%   |
-|             | 8       | 4.8675           | 0.1533             | Dynamic(1)        | +3075.2%   |
-| **50K**     | 1       | 0.0858           | 0.2479             | Static            | +189.1%    |
-|             | 2       | 0.0979           | 1.2108             | Static            | +1136.5%   |
-|             | 4       | 0.0271           | 1.3628             | Static            | +4926.0%   |
-|             | 8       | 9.6709           | 10.1578            | Static            | +5.0%      |
-| **100K**    | 1       | 0.0915           | 0.6272             | Static            | +585.4%    |
-|             | 2       | 0.2052           | 2.2149             | Static            | +979.2%    |
-|             | 4       | 0.0659           | 2.5261             | Static            | +3734.7%   |
-|             | 8       | 9.9846           | 7.9956             | Dynamic(1)        | +24.9%     |
-| **500K**    | 1       | 1.5138           | 2.6568             | Static            | +75.5%     |
-|             | 2       | 1.4972           | 8.2759             | Static            | +452.8%    |
-|             | 4       | 0.4020           | 9.8781             | Static            | +2357.1%   |
-|             | 8       | 0.2119           | 7.6347             | Static            | +3502.4%   |
+| ----------- | ------- | ---------------- | -------------------- | ------------------ | ---------- |
+| **1K**      | 1       | 0.0013           | 0.0045               | Static             | +237.9%    |
+|             | 2       | 0.0076           | 0.0305               | Static             | +299.2%    |
+|             | 4       | 0.0009           | 0.0378               | Static             | +4114.8%   |
+|             | 8       | 7.0123           | 6.9552               | Dynamic(1)         | +0.8%      |
+| **10K**     | 1       | 0.0047           | 0.0383               | Static             | +717.7%    |
+|             | 2       | 0.0175           | 0.3553               | Static             | +1930.3%   |
+|             | 4       | 0.0029           | 0.2885               | Static             | +9682.0%   |
+|             | 8       | 4.8675           | 0.1533               | Dynamic(1)         | +3075.2%   |
+| **50K**     | 1       | 0.0858           | 0.2479               | Static             | +189.1%    |
+|             | 2       | 0.0979           | 1.2108               | Static             | +1136.5%   |
+|             | 4       | 0.0271           | 1.3628               | Static             | +4926.0%   |
+|             | 8       | 9.6709           | 10.1578              | Static             | +5.0%      |
+| **100K**    | 1       | 0.0915           | 0.6272               | Static             | +585.4%    |
+|             | 2       | 0.2052           | 2.2149               | Static             | +979.2%    |
+|             | 4       | 0.0659           | 2.5261               | Static             | +3734.7%   |
+|             | 8       | 9.9846           | 7.9956               | Dynamic(1)         | +24.9%     |
+| **500K**    | 1       | 1.5138           | 2.6568               | Static             | +75.5%     |
+|             | 2       | 1.4972           | 8.2759               | Static             | +452.8%    |
+|             | 4       | 0.4020           | 9.8781               | Static             | +2357.1%   |
+|             | 8       | 0.2119           | 7.6347               | Static             | +3502.4%   |
 
 #### Static vs Dynamic (Optimized Chunk Size) Performance Comparison
 
 **Performance Summary: Static vs Dynamic(optimized chunks)**
 
-| Vector Size | Threads | Static Time (ms) | Dynamic Time (ms) | Chunk Size | Winner    | Performance Diff % |
-|-------------|---------|------------------|-------------------|------------|-----------|-------------------|
-| **1K**      | 1       | 0.0031           | 0.0014            | 100        | Dynamic   | +114.3%           |
-|             | 2       | 0.5959           | 0.0015            | 50         | Dynamic   | +39339.2%         |
-|             | 4       | 0.4229           | 0.0017            | 25         | Dynamic   | +24772.6%         |
-|             | 8       | 4.3259           | 0.0339            | 12         | Dynamic   | +12678.1%         |
-| **10K**     | 1       | 0.0307           | 0.0084            | 1000       | Dynamic   | +266.5%           |
-|             | 2       | 0.0041           | 0.0028            | 500        | Dynamic   | +43.1%            |
-|             | 4       | 0.6293           | 0.0069            | 250        | Dynamic   | +9067.4%          |
-|             | 8       | 7.3363           | 6.5429            | 125        | Dynamic   | +12.1%            |
-| **50K**     | 1       | 0.0340           | 0.0300            | 1000       | Dynamic   | +13.4%            |
-|             | 2       | 0.0393           | 0.0271            | 1000       | Dynamic   | +44.9%            |
-|             | 4       | 0.0855           | 0.0075            | 1000       | Dynamic   | +1039.6%          |
-|             | 8       | 4.1696           | 0.0089            | 625        | Dynamic   | +46636.1%         |
-| **100K**    | 1       | 0.2447           | 0.6438            | 1000       | Static    | +163.1%           |
-|             | 2       | 1.0089           | 0.0853            | 1000       | Dynamic   | +1082.7%          |
-|             | 4       | 0.2332           | 0.0495            | 1000       | Dynamic   | +370.8%           |
-|             | 8       | 8.6645           | 8.6485            | 1000       | Dynamic   | +0.2%             |
+| Vector Size | Threads | Static Time (ms) | Dynamic Time (ms) | Chunk Size | Winner  | Performance Diff % |
+| ----------- | ------- | ---------------- | ----------------- | ---------- | ------- | ------------------ |
+| **1K**      | 1       | 0.0031           | 0.0014            | 100        | Dynamic | +114.3%            |
+|             | 2       | 0.5959           | 0.0015            | 50         | Dynamic | +39339.2%          |
+|             | 4       | 0.4229           | 0.0017            | 25         | Dynamic | +24772.6%          |
+|             | 8       | 4.3259           | 0.0339            | 12         | Dynamic | +12678.1%          |
+| **10K**     | 1       | 0.0307           | 0.0084            | 1000       | Dynamic | +266.5%            |
+|             | 2       | 0.0041           | 0.0028            | 500        | Dynamic | +43.1%             |
+|             | 4       | 0.6293           | 0.0069            | 250        | Dynamic | +9067.4%           |
+|             | 8       | 7.3363           | 6.5429            | 125        | Dynamic | +12.1%             |
+| **50K**     | 1       | 0.0340           | 0.0300            | 1000       | Dynamic | +13.4%             |
+|             | 2       | 0.0393           | 0.0271            | 1000       | Dynamic | +44.9%             |
+|             | 4       | 0.0855           | 0.0075            | 1000       | Dynamic | +1039.6%           |
+|             | 8       | 4.1696           | 0.0089            | 625        | Dynamic | +46636.1%          |
+| **100K**    | 1       | 0.2447           | 0.6438            | 1000       | Static  | +163.1%            |
+|             | 2       | 1.0089           | 0.0853            | 1000       | Dynamic | +1082.7%           |
+|             | 4       | 0.2332           | 0.0495            | 1000       | Dynamic | +370.8%            |
+|             | 8       | 8.6645           | 8.6485            | 1000       | Dynamic | +0.2%              |
 
 #### Chunk Size Optimization Analysis
 
 **Dynamic Scheduling Chunk Size Performance (10K Elements, 4 Threads)**
 
 | Chunk Size | Avg Time (ms) | Std Dev (ms) | Throughput (elements/s) | Overhead vs Chunk=1 |
-|------------|---------------|--------------|-------------------------|---------------------|
-| 1          | 0.6022        | 1.0483       | 1.66×10⁷               | Baseline            |
-| 10         | 0.1062        | 0.0998       | 9.41×10⁷               | -82.4%              |
-| 100        | 0.0041        | 0.0005       | 2.45×10⁹               | -99.3%              |
-| 500        | 0.0021        | 0.0001       | 4.78×10⁹               | -99.7%              |
-| 1000       | 0.0020        | 0.0001       | 5.12×10⁹               | -99.7%              |
-| 2000       | 0.0018        | 0.0001       | 5.66×10⁹               | -99.7%              |
+| ---------- | ------------- | ------------ | ----------------------- | ------------------- |
+| 1          | 0.6022        | 1.0483       | 1.66×10⁷                | Baseline            |
+| 10         | 0.1062        | 0.0998       | 9.41×10⁷                | -82.4%              |
+| 100        | 0.0041        | 0.0005       | 2.45×10⁹                | -99.3%              |
+| 500        | 0.0021        | 0.0001       | 4.78×10⁹                | -99.7%              |
+| 1000       | 0.0020        | 0.0001       | 5.12×10⁹                | -99.7%              |
+| 2000       | 0.0018        | 0.0001       | 5.66×10⁹                | -99.7%              |
 
 **Dynamic Scheduling Chunk Size Performance (100K Elements, 4 Threads)**
 
 | Chunk Size | Avg Time (ms) | Std Dev (ms) | Throughput (elements/s) | Overhead vs Chunk=1 |
-|------------|---------------|--------------|-------------------------|---------------------|
-| 1          | 2.4607        | 0.9372       | 4.06×10⁷               | Baseline            |
-| 10         | 1.0476        | 1.5385       | 9.55×10⁷               | -57.4%              |
-| 100        | 0.0368        | 0.0029       | 2.72×10⁹               | -98.5%              |
-| 500        | 0.0159        | 0.0025       | 6.30×10⁹               | -99.4%              |
-| 1000       | 0.0112        | 0.0008       | 8.95×10⁹               | -99.5%              |
-| 2000       | 0.0108        | 0.0008       | 9.23×10⁹               | -99.6%              |
+| ---------- | ------------- | ------------ | ----------------------- | ------------------- |
+| 1          | 2.4607        | 0.9372       | 4.06×10⁷                | Baseline            |
+| 10         | 1.0476        | 1.5385       | 9.55×10⁷                | -57.4%              |
+| 100        | 0.0368        | 0.0029       | 2.72×10⁹                | -98.5%              |
+| 500        | 0.0159        | 0.0025       | 6.30×10⁹                | -99.4%              |
+| 1000       | 0.0112        | 0.0008       | 8.95×10⁹                | -99.5%              |
+| 2000       | 0.0108        | 0.0008       | 9.23×10⁹                | -99.6%              |
 
 #### Analysis of Virtualization and Hardware Effects
 
@@ -350,26 +351,27 @@ graph TD
 
 **Potential Virtualization Impact:**
 
-| Factor | Impact on Static | Impact on Dynamic | Explanation |
-|--------|------------------|-------------------|-------------|
-| **CPU Scheduling** | High variability | More predictable | VM scheduler may interrupt static threads mid-execution |
-| **Memory Access** | Cache conflicts | Better adaptation | Dynamic adapts to VM memory allocation patterns |
-| **System Load** | Poor adaptation | Good adaptation | Static assumes dedicated resources, dynamic adjusts |
-| **Thread Priorities** | Assumes equality | Handles variations | VM may deprioritize certain threads |
+| Factor                | Impact on Static | Impact on Dynamic  | Explanation                                             |
+| --------------------- | ---------------- | ------------------ | ------------------------------------------------------- |
+| **CPU Scheduling**    | High variability | More predictable   | VM scheduler may interrupt static threads mid-execution |
+| **Memory Access**     | Cache conflicts  | Better adaptation  | Dynamic adapts to VM memory allocation patterns         |
+| **System Load**       | Poor adaptation  | Good adaptation    | Static assumes dedicated resources, dynamic adjusts     |
+| **Thread Priorities** | Assumes equality | Handles variations | VM may deprioritize certain threads                     |
 
 #### Scheduling Overhead Analysis
 
 **Synchronization Costs (Based on Chunk Size 1 Data):**
 
 | Vector Size | Sync Points | Cost per Sync (ns) | Total Overhead (ms) | Overhead % of Total |
-|-------------|-------------|--------------------|--------------------|-------------------|
-| 1K          | 1,000       | 36.9               | 0.037              | 97.6%             |
-| 10K         | 10,000      | 28.6               | 0.286              | 99.0%             |
-| 50K         | 50,000      | 26.7               | 1.336              | 98.0%             |
-| 100K        | 100,000     | 24.6               | 2.460              | 97.4%             |
-| 500K        | 500,000     | 19.0               | 9.476              | 95.9%             |
+| ----------- | ----------- | ------------------ | ------------------- | ------------------- |
+| 1K          | 1,000       | 36.9               | 0.037               | 97.6%               |
+| 10K         | 10,000      | 28.6               | 0.286               | 99.0%               |
+| 50K         | 50,000      | 26.7               | 1.336               | 98.0%               |
+| 100K        | 100,000     | 24.6               | 2.460               | 97.4%               |
+| 500K        | 500,000     | 19.0               | 9.476               | 95.9%               |
 
 **Key Findings:**
+
 - **Synchronization cost**: ~20-40 nanoseconds per work assignment
 - **Overhead dominance**: 95-99% of execution time in Dynamic(chunk=1)
 - **Chunk size optimization**: Critical for dynamic scheduling performance
@@ -380,7 +382,7 @@ graph TD
 #### 50x50 Matrix Performance
 
 | Parallelization | Threads | Avg. Time (s) | GFLOPS | Speedup | Efficiency | Best Time (s) |
-|-----------------|---------|---------------|--------|---------|------------|---------------|
+| --------------- | ------- | ------------- | ------ | ------- | ---------- | ------------- |
 | **Outer Loop**  | 1       | 0.000064      | 3.91   | 1.00x   | 100.0%     | 0.000062      |
 |                 | 4       | 0.000441      | 0.57   | 0.14x   | 3.6%       | 0.000017      |
 |                 | 8       | 0.008546      | 0.03   | 0.01x   | 0.1%       | 0.003670      |
@@ -393,7 +395,7 @@ graph TD
 #### 500x500 Matrix Performance
 
 | Parallelization | Threads | Avg. Time (s) | GFLOPS | Speedup | Efficiency | Best Time (s) |
-|-----------------|---------|---------------|--------|---------|------------|---------------|
+| --------------- | ------- | ------------- | ------ | ------- | ---------- | ------------- |
 | **Outer Loop**  | 1       | 1.164745      | 0.21   | 1.00x   | 100.0%     | 1.139651      |
 |                 | 4       | 0.288332      | 0.87   | 4.04x   | 101.0%     | 0.272568      |
 |                 | 8       | 0.163254      | 1.53   | 7.13x   | 89.2%      | 0.113722      |
@@ -406,7 +408,7 @@ graph TD
 #### 1000x1000 Matrix Performance
 
 | Parallelization | Threads | Avg. Time (s) | GFLOPS | Speedup | Efficiency | Best Time (s) |
-|-----------------|---------|---------------|--------|---------|------------|---------------|
+| --------------- | ------- | ------------- | ------ | ------- | ---------- | ------------- |
 | **Outer Loop**  | 1       | 1.327500      | 1.51   | 1.00x   | 100.0%     | 0.865626      |
 |                 | 4       | 0.419517      | 4.77   | 3.16x   | 79.1%      | 0.346475      |
 |                 | 8       | 0.315880      | 6.33   | 4.20x   | 52.5%      | 0.264190      |
@@ -418,15 +420,15 @@ graph TD
 
 #### Matrix Calculation Winner Analysis
 
-| Matrix Size | Thread Count | Winner     | Performance Advantage | Reason                    |
-|-------------|--------------|------------|-----------------------|---------------------------|
-| 50x50       | 1            | Outer Loop | 19.9% faster          | Lower overhead            |
-|             | 4            | Inner Loop | 83.5% faster          | Better load balancing     |
-|             | 8+           | Outer Loop | >90% faster           | Thread creation overhead  |
-| 500x500     | 1-4          | Outer Loop | 0.3-16.7% faster      | Memory locality           |
-|             | 8            | Inner Loop | 25.3% faster          | Optimal parallelization   |
-|             | 16           | Outer Loop | 88.5% faster          | Excessive overhead        |
-| 1000x1000   | All          | Outer Loop | 1.6-91.7% faster      | Consistent superiority    |
+| Matrix Size | Thread Count | Winner     | Performance Advantage | Reason                   |
+| ----------- | ------------ | ---------- | --------------------- | ------------------------ |
+| 50x50       | 1            | Outer Loop | 19.9% faster          | Lower overhead           |
+|             | 4            | Inner Loop | 83.5% faster          | Better load balancing    |
+|             | 8+           | Outer Loop | >90% faster           | Thread creation overhead |
+| 500x500     | 1-4          | Outer Loop | 0.3-16.7% faster      | Memory locality          |
+|             | 8            | Inner Loop | 25.3% faster          | Optimal parallelization  |
+|             | 16           | Outer Loop | 88.5% faster          | Excessive overhead       |
+| 1000x1000   | All          | Outer Loop | 1.6-91.7% faster      | Consistent superiority   |
 
 #### Key Findings for Matrix Calculation
 
@@ -440,18 +442,21 @@ graph TD
 ### Performance Optimization Recommendations
 
 #### For Vector Addition:
+
 1. **Small vectors (<1M elements)**: Use dynamic or auto scheduling
 2. **Large vectors (>5M elements)**: Static or guided scheduling preferred
 3. **Thread count**: Optimal at 4-8 threads for this system
 4. **Chunk size tuning**: Critical for dynamic scheduling performance
 
 #### For Matrix Multiplication:
+
 1. **Small matrices (<100x100)**: Single-threaded or 4 threads maximum
 2. **Medium matrices (500x500)**: 8 threads with outer loop parallelization
 3. **Large matrices (>1000x1000)**: Outer loop parallelization strongly recommended
 4. **Thread scaling**: Diminishing returns beyond physical core count
 
 #### General Guidelines:
+
 - **Match thread count to physical cores** (8 cores optimal for this system)
 - **Consider memory bandwidth limitations** for large datasets
 - **Profile actual performance** rather than assuming theoretical scaling

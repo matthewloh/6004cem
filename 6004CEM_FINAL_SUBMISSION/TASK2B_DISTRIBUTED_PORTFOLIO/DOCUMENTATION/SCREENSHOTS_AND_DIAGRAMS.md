@@ -25,20 +25,20 @@ graph TD
     subgraph "MPI Program Flow"
         direction LR
         A[Start] --> B{MPI_Init};
-        
+
         subgraph "Parallel Execution (4 Processes)"
             direction TB
             P0["Process 0"]
             P1["Process 1"]
             P2["Process 2"]
             P3["..."]
-            
+
             P0 --> P0_Work["enhancedMPIHello()"];
             P1 --> P1_Work["enhancedMPIHello()"];
             P2 --> P2_Work["enhancedMPIHello()"];
             P3 --> P3_Work["enhancedMPIHello()"];
         end
-        
+
         B --> P0;
         B --> P1;
         B --> P2;
@@ -105,7 +105,7 @@ graph TD
 ```mermaid
 graph TD
     Master["Master (Rank 0)"]
-    
+
     subgraph "Slave Processes"
         direction LR
         Slave1["Slave (Rank 1)"]
@@ -141,7 +141,7 @@ sequenceDiagram
     S1->>M: MPI_Send(message, dest=0)
     S2->>M: MPI_Send(message, dest=0)
     S3->>M: MPI_Send(message, dest=0)
-    
+
     loop For each Slave
         M-->>M: Receives and prints message
     end
@@ -194,7 +194,7 @@ graph TD
         E --> G{End};
         F --> G;
     end
-    
+
     style E fill:#d4edda,stroke:#155724
     style F fill:#f8d7da,stroke:#721c24
 ```
@@ -207,16 +207,16 @@ sequenceDiagram
 
     Master->>+Slave: MPI_Send(Message, tag=100)
     Note over Master,Slave: Master sends message with Tag 100
-    
+
     Slave->>MPI_Queue: Message(tag=100) arrives
     Note right of MPI_Queue: Message is stored in<br/>the MPI internal queue.
-    
+
     Slave->>+Slave: MPI_Recv(source=Master, tag=101)
     Note over Slave: Slave is now blocked,<br/>waiting ONLY for a message with Tag 101.
-    
+
     Slave-->>MPI_Queue: Search for message with tag=101...
     MPI_Queue-->>Slave: Not Found!
-    
+
     loop Indefinite Wait (Hang)
         Slave-->>MPI_Queue: Search for message with tag=101...
         MPI_Queue-->>Slave: Not Found!
@@ -234,10 +234,10 @@ sequenceDiagram
 
     Slave->>Slave: MPI_Recv(tag=DATA_TAG)
     Note right of Slave: Processes Data
-    
+
     Slave->>Slave: MPI_Recv(tag=CONTROL_TAG)
     Note right of Slave: Executes Command
-    
+
     Slave->>Slave: MPI_Recv(tag=STATUS_TAG)
     Note right of Slave: Returns Status
 ```
