@@ -169,12 +169,15 @@ public:
         // Synchronize all processes before starting
         MPI_Barrier(MPI_COMM_WORLD);
         
-        // Each process says hello
-        cout << "Hello from MPI process " << rank << " of " << size 
-             << " running on " << processor_name << " (PID: " << getpid() << ")" << endl;
-        
-        // Demonstrate collective communication
-        MPI_Barrier(MPI_COMM_WORLD);
+        // Each process says hello in order
+        for (int i = 0; i < size; i++) {
+            if (rank == i) {
+                cout << "Hello from MPI process " << rank << " of " << size 
+                     << " running on " << processor_name << " (PID: " << getpid() << ")" << endl;
+                cout.flush();
+            }
+            MPI_Barrier(MPI_COMM_WORLD);
+        }
         
         if (rank == 0) {
             end_time = MPI_Wtime();
@@ -220,9 +223,15 @@ public:
         
         int broadcast_data = (rank == 0) ? 42 : 0;
         MPI_Bcast(&broadcast_data, 1, MPI_INT, 0, MPI_COMM_WORLD);
-        cout << "   Process " << rank << " received broadcast data: " << broadcast_data << endl;
         
-        MPI_Barrier(MPI_COMM_WORLD);
+        // Ensure ordered output for broadcast results
+        for (int i = 0; i < size; i++) {
+            if (rank == i) {
+                cout << "   Process " << rank << " received broadcast data: " << broadcast_data << endl;
+                cout.flush();
+            }
+            MPI_Barrier(MPI_COMM_WORLD);
+        }
         
         // 3. Demonstrate reduction operation
         if (rank == 0) {
@@ -236,9 +245,6 @@ public:
         if (rank == 0) {
             cout << "   Sum of all process contributions: " << sum_result << endl;
             cout << "   (Expected: " << (size * (size + 1) / 2) << ")" << endl;
-        }
-        
-        if (rank == 0) {
             cout << "============================================\n" << endl;
         }
     }
@@ -359,6 +365,9 @@ int main(int argc, char *argv[]) {
         // Part 4: Execution scenarios
         hello_world.demonstrateExecutionScenarios();
         
+        // Synchronize all processes before user input section
+        MPI_Barrier(MPI_COMM_WORLD);
+        
         // Part 5: User input demonstration (master only)
         int rank;
         MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -380,8 +389,10 @@ int main(int argc, char *argv[]) {
             }
         }
         
-        // Final demonstration with current process count
+        // Ensure all processes wait for user input to complete
         MPI_Barrier(MPI_COMM_WORLD);
+        
+        // Final demonstration with current process count - all processes participate
         int size;
         MPI_Comm_size(MPI_COMM_WORLD, &size);
         hello_world.enhancedMPIHello(size, "FINAL: CURRENT EXECUTION SUMMARY");
